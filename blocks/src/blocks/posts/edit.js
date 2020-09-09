@@ -3,7 +3,7 @@
 const { withSelect } = wp.data;
 const { InspectorControls } = wp.blockEditor;
 const { Component } = wp.element;
-const { PanelBody,RangeControl,TextControl,SelectControl,ColorPalette,ColorPicker } =wp.components;
+const { PanelBody,RangeControl,TextControl,SelectControl,ColorPicker } =wp.components;
 const  apiFetch  = wp.apiFetch;
 const { addQueryArgs } = wp.url;
 
@@ -109,13 +109,7 @@ class SlothGeekPostEdit extends Component {
                         ] }
                         onChange={ ( value ) => setAttributes( { type: value } ) }
                     />
-                    <ColorPalette
-                        colors = { MainColors }
-                        value={ attributes.filter }
-                        onChange={ ( value ) => {
-                            setAttributes( { filter : value } );
-                        } }
-                    />
+
                     <ColorPicker
                         color={ attributes.filter }
                         onChangeComplete={ ( value ) => {
