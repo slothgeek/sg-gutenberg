@@ -1,0 +1,25 @@
+.sg-gallery-inner {
+  display: flex;
+  flex-wrap: wrap;
+
+  .sg-item {
+    border: 1px solid #ccc;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .component-graphic {
+    height: 100px;
+    display: flex;
+    align-items: center;
+  }
+
+  .editor-plain-text{
+    text-align: center;
+  }
+
+  button{
+    margin: 0 auto;
+  }
+
+}

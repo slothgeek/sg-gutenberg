@@ -1,0 +1,17 @@
+.wp-block-sg-ganimation{
+
+  &.sg-items{
+    position: relative;
+    max-width: 550px;
+    margin: 0 auto;
+
+    .sg-item{
+      position: absolute;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+}

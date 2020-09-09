@@ -1,0 +1,23 @@
+.wp-block-sg-ganimation{
+
+  .no-data {
+    display: flex;
+    padding: 20px 10px;
+    background-color: lightgray;
+    align-items: center;
+
+    button{
+      background-color: white;
+      margin: 0 5px;
+    }
+  }
+
+  &.sg-items{
+    position: relative;
+
+    .sg-item{
+      position: absolute;
+    }
+  }
+
+}

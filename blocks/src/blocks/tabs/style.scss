@@ -1,0 +1,119 @@
+.wp-block-sg-tabs{
+
+  min-height: 550px;
+  padding: 20px;
+  background: white;
+  border-radius: 30px;
+
+  li.indicator{
+    display:none;
+  }
+
+  ul.tabs{
+    display: flex;
+    height: auto;
+
+    .tab{
+      height: auto;
+      min-width: 20%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      a{
+        display: flex;
+        align-items: center;
+
+        &.column{
+          flex-direction: column;
+        }
+        &.row{
+          flex-direction: row;
+
+          .sg-tabgraphic {
+            margin-right: 10px;
+            width: 40%;
+          }
+
+          .sg-tab-title{
+            width: 60%;
+          }
+        }
+
+        .sg-tabgraphic {
+          height: 60px;
+          padding: 5px;
+
+          img{
+            width: 100%;
+            max-height: 100%;
+          }
+
+        }
+
+
+      }
+    }
+  }
+
+  &.row{
+    display: flex;
+
+    .tabs{
+      flex-direction: column;
+      flex-basis: 40%;
+      max-width: 300px;
+      background-color: transparent;
+      margin-right: 40px;
+
+      .tab{
+        padding: 10px 10px 10px 0;
+
+        a{
+          background-color: #e8e6fd;
+          border-radius: 5px;
+          color: #3922c0;
+        }
+
+        a.active{
+          background-color: #00dfb3;
+          color: white;
+        }
+
+        .sg-tab-title {
+          white-space: normal;
+          line-height: 20px;
+          text-align: left;
+        }
+      }
+    }
+
+    .sg-tab-panel {
+      flex: 1;
+    }
+  }
+
+  &.absolute{
+    position: absolute;
+    top: 2%;
+    left: 1%;
+    right: 4.5%;
+    bottom: 6%;
+  }
+
+  @media (max-width: 600px) {
+    &.row{
+      flex-direction: column;
+
+      .tabs{
+        flex-basis: 100%;
+        max-width: 100%;
+        margin-right: 0;
+      }
+    }
+  }
+
+}
+
+

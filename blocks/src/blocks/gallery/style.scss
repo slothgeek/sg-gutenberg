@@ -1,0 +1,29 @@
+.sg-gallery-inner {
+  display: flex;
+  flex-wrap: wrap;
+
+  .sg-item {
+    position: relative;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    transition: filter .3s ease-in-out;
+
+    img{
+      width: 100%;
+    }
+
+    &:hover{
+      filter: grayscale(0);
+    }
+  }
+
+  @media only screen and (max-width : 600px) {
+
+    .sg-item {
+      width: 50% !important;
+    }
+
+  }
+}

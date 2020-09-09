@@ -1,0 +1,20 @@
+.wp-block-sg-card {
+  .sg-item {
+    position: relative;
+  }
+
+  .sg-item-graphic {
+    display: flex;
+    min-height: 200px;
+    
+    button{
+      margin: 0 auto;
+      z-index: 2;
+    }
+  }
+
+  .sg-item-action {
+
+  }
+
+}

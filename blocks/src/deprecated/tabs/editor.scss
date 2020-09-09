@@ -1,0 +1,59 @@
+.wp-block-sg-tabs {
+
+  display: flex;
+  flex-direction: column;
+
+  .tabs {
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none !important;
+    display: flex;
+
+    .tab{
+      border: 1px solid lightgray;
+      border-radius: 4px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .tabs-body{
+
+    .tab-content {
+      padding: 5px;
+      border: 1px solid lightgray;
+      margin-bottom: 10px;
+      border-radius: 4px;
+    }
+
+    .component-graphic {
+      max-width: 100%;
+
+      button{
+        width: 100%;
+      }
+    }
+
+    .tab-content-inner {
+      display: flex;
+      align-items: center;
+    }
+
+    .graphic-area {
+      flex-basis: 30%;
+    }
+
+    .body-area {
+      flex-basis: 60%;
+      margin-left: 10%;
+    }
+
+  }
+
+  .tab-toolbar {
+    font-size: 18px;
+    color: lightgray;
+    padding: 10px 0;
+  }
+
+}

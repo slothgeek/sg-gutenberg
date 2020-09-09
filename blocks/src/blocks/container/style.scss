@@ -1,0 +1,28 @@
+.wp-block-sg-cotainer {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+
+  #sg-block{
+    position: relative;
+  }
+
+  .sg-title, .sg-item{
+    position: relative;
+  }
+
+  .wp-block.editor-block {
+    border: 1px dashed #ccc;
+  }
+
+  .filterImage{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+
+}

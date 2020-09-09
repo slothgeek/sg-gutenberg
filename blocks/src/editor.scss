@@ -1,0 +1,236 @@
+//The Button Style
+/*
+.sg-action{
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  background-color: #0e2345;
+  min-width: 50px;
+  padding: 10px;
+
+  .sg-action-url{
+    min-width: 200px;
+    max-width: 100%;
+    position: absolute;
+    bottom: -43px;
+    left: 0;
+
+    input{
+      border: 1px solid #000;
+    }
+  }
+}*/
+
+
+
+/*
+ Hoja de estilos para controles de diseño CSS
+
+ 1. Dimension control
+ 2. Background image
+ 3. Range control
+ 4. Toolbar
+ 5. Inner Blocks
+ 6. Buttons
+ 7. Panel
+ */
+
+/*
+ 1. Dimension control
+ */
+
+.dimension-control{
+  .padding{
+    position: relative;
+    height: 68px;
+    border: 1px dashed #090909;
+    width: 100px;
+    margin: 20px auto;
+  }
+
+  .margin {
+    margin: 30px auto;
+    padding: 20px 0;
+    position: relative;
+    width: 210px;
+    border: 1px dashed #090909;
+  }
+
+  .dimension-input{
+    position: absolute;
+    width: 50px;
+    height: 34px;
+
+    &.top{
+      left: calc(50% - 25px);
+      top: -17px;
+    }
+
+    &.right{
+      right: -25px;
+      top: calc(50% - 17px);
+    }
+
+    &.bottom{
+      left: calc(50% - 25px);
+      bottom: -17px;
+    }
+
+    &.left{
+      left: -25px;
+      top: calc(50% - 17px);
+    }
+  }
+
+  .components-text-control__input {
+    text-align: center;
+    padding: 5px 0 !important;
+  }
+}
+
+/*
+ 2. Background image
+ */
+.sg-style-edit-background{
+  .no-image {
+    height: 100px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px dashed;
+    margin-bottom: 10px;
+  }
+
+  .components-base-control {
+    position: relative;
+  }
+
+  .components-circular-option-picker{
+    margin-bottom: 24px;
+  }
+
+  .sg-toolbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+}
+
+/*
+ 3. Range control
+ */
+
+.range-control {
+  display: flex;
+
+  .range-control-range{
+    flex-basis: 80%;
+  }
+
+  .range-control-select{
+    flex-basis: 20%;
+    margin-top: -1px;
+
+    select {
+      padding-left: 2px;
+      height: 31px;
+    }
+  }
+}
+
+/*
+ 4. Toolbar
+ */
+
+.sg-toobal-button{
+  border-top: 1px solid;
+  border-right: 1px solid;
+  border-color: #b5bcc2;
+  border-radius: 0;
+}
+.wp-block {
+  max-width: 98% !important;
+}
+
+.editor-panel{
+  overflow: hidden;
+}
+.editorControl{
+  padding: 10px 1px;
+}
+
+.editorControl-button{
+  margin-top: 30px;
+  padding: 5px 0;
+  border-top: 1px solid rgb(204, 204, 204);
+  width: 100%;
+  font-weight: 600;
+  position: relative;
+  color: maroon;
+
+  .dashicon{
+    margin-left: 5px;
+    position: absolute;
+    right: 0px;
+  }
+}
+
+/*
+ 5. Inner Blocks
+*/
+
+.block-list-appender {
+  float: left;
+  width: 100%;
+}
+
+.block-editor-block-list__layout{
+  padding: 0;
+
+}
+
+/*
+ 6. Buttons
+ */
+.sg-button{
+
+  &.full{
+    width: 100%;
+  }
+}
+
+/*
+ 7. Panel
+ */
+
+.sg-tab-panel{
+  width: 100%;
+
+  .components-tab-panel__tabs{
+    margin-bottom: 15px;
+  }
+}
+
+/*
+ 8. Graphic Picker
+ */
+
+.graphic-picker{
+  position: relative;
+
+  .sg-toolbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+.graphic-picker-no-image {
+  min-height: 120px;
+  margin: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed;
+}

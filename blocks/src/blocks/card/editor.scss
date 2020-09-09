@@ -1,0 +1,70 @@
+.wp-block-sg-card {
+  .card{
+    padding: 0 !important;
+  }
+  .card-action {
+    display: flex;
+    align-items: center;
+  }
+
+  .add-card-action{
+    margin-right: 20px;
+  }
+
+  .floating-area{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+
+    .add-floating-action{
+      color: white;
+    }
+  }
+
+  .sg-button, .sg-floating {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: fit-content;
+    width: -moz-fit-content;
+    background-color: #ececec;
+
+    button{
+      margin-left: 0 !important;
+    }
+  }
+
+  .sg-button-label {
+    min-width: 50px;
+    padding: 10px;
+    width: -moz-fit-content;
+  }
+
+  .sg-button-href {
+    position: absolute;
+    width: 200px;
+    margin-top: 8px;
+    margin-left: 5px;
+    background-color: #fff;
+    bottom: -40px;
+    z-index: 2;
+
+    .components-base-control__field {
+      margin-bottom: 0 !important;
+    }
+
+    .components-text-control__input{
+      border: 0 !important;
+      margin: 0 !important;
+      height: 30px !important;
+      border: 1px solid #000 !important;
+      -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75) !important;
+      -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75) !important;
+      box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75) !important;
+    }
+  }
+}
