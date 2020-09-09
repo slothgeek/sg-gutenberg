@@ -1,22 +1,27 @@
+
+
 const { withSelect } = wp.data;
 const { InspectorControls } = wp.blockEditor;
 const { Component } = wp.element;
-const { PanelBody,RangeControl,TextControl,SelectControl } =wp.components;
+const { PanelBody,RangeControl,TextControl,SelectControl,ColorPalette,ColorPicker } =wp.components;
 const  apiFetch  = wp.apiFetch;
 const { addQueryArgs } = wp.url;
+
+import { getRGBAColor } from '../../helpers/utilities';
+import MainColors from '../../helpers/colors';
 
 const CATEGORIES_LIST_QUERY = {
     per_page: -1,
 };
 
 class SlothGeekPostEdit extends Component {
-    constructor() {
+
+    constructor(props) {
         super( ...arguments );
 
         this.state = {
             categoriesList: [],
         };
-
     }
 
     componentDidMount() {
@@ -24,16 +29,16 @@ class SlothGeekPostEdit extends Component {
         this.fetchRequest = apiFetch( {
             path: addQueryArgs( `/wp/v2/categories`, CATEGORIES_LIST_QUERY ),
         } )
-            .then( ( categoriesList ) => {
-                if ( this.isStillMounted ) {
-                    this.setState( { categoriesList } );
-                }
-            } )
-            .catch( () => {
-                if ( this.isStillMounted ) {
-                    this.setState( { categoriesList: [] } );
-                }
-            } );
+        .then( ( categoriesList ) => {
+            if ( this.isStillMounted ) {
+                this.setState( { categoriesList } );
+            }
+        } )
+        .catch( () => {
+            if ( this.isStillMounted ) {
+                this.setState( { categoriesList: [] } );
+            }
+        } );
     }
 
     componentWillUnmount() {
@@ -63,7 +68,6 @@ class SlothGeekPostEdit extends Component {
                         onChange={ ( value ) => setAttributes( { columns: value } ) }
                         min={ 1 }
                         max={ 12 }
-                        required
                     />
                     <RangeControl
                         label="¿Cuantos post?"
@@ -73,7 +77,6 @@ class SlothGeekPostEdit extends Component {
                         }
                         min={ 1 }
                         max={ 9 }
-                        required
                     />
                     <RangeControl
                         label="Alto de la imagen (px)"
@@ -81,7 +84,6 @@ class SlothGeekPostEdit extends Component {
                         onChange={ ( value ) => setAttributes( { height: value } ) }
                         min={ 1 }
                         max={ 1000 }
-                        required
                     />
                     <SelectControl
                         multiple
@@ -107,6 +109,19 @@ class SlothGeekPostEdit extends Component {
                         ] }
                         onChange={ ( value ) => setAttributes( { type: value } ) }
                     />
+                    <ColorPalette
+                        colors = { MainColors }
+                        value={ attributes.filter }
+                        onChange={ ( value ) => {
+                            setAttributes( { filter : value } );
+                        } }
+                    />
+                    <ColorPicker
+                        color={ attributes.filter }
+                        onChangeComplete={ ( value ) => {
+                            setAttributes( { filter : getRGBAColor(value) } )
+                        } }
+                    />
                 </PanelBody>
             </InspectorControls>
         );
@@ -125,7 +140,7 @@ class SlothGeekPostEdit extends Component {
             return(
                 <li className="sg-item " style={ { width:`${columnWidth}%` } }>
                     <div className="card medium">
-                        <div className="card-image">
+                        <div className="card-image" style={{height: height}}>
                             <img src={image_url} alt=""/>
                             <span className="card-title">{post.title.rendered}</span>
                         </div>
@@ -142,13 +157,14 @@ class SlothGeekPostEdit extends Component {
             )
         };
 
-        const option1 = (post, columnWidth) => {
+        const option1 = (post, columnWidth, height) => {
 
             let image_url = post._embedded['wp:featuredmedia'] ? post._embedded['wp:featuredmedia'][0].source_url : '';
 
             return(
                 <li className="sg-item" style={ { width:`${columnWidth}%` } }>
-                    <div className="sg-item-content" style={{backgroundImage: `url(${image_url})`}}>
+                    <div className="sg-item-content" style={{backgroundImage: `url(${image_url})`, height: height}}>
+                        <div className="sg-item-filter" style={{backgroundColor: attributes.filter}}></div>
                         <div className="sg-item-title">
                             <h5>{post.title.rendered}</h5>
                         </div>
@@ -173,7 +189,7 @@ class SlothGeekPostEdit extends Component {
             return(
                 <li className="sg-item" style={ { width:`${columnWidth}%` } }>
                     <div className="sg-item-content">
-                        <div className="sg-item-graphic" style={ { height:`${height}px` } }>
+                        <div className="sg-item-graphic" style={ { height: height } }>
                             <img src={image_url} alt=""/>
                         </div>
                         <div className={titleClasses}>
@@ -188,7 +204,7 @@ class SlothGeekPostEdit extends Component {
         };
 
         const columnWidth = ( 100 / attributes.columns );
-
+        const height = attributes.height+"px";
         return (
             <div className={ className }>
                 {inspectorControls}
@@ -198,16 +214,16 @@ class SlothGeekPostEdit extends Component {
 
                             switch ( parseInt(attributes.type) ) {
                                 case 0:
-                                    return option0(post, columnWidth);
+                                    return option0(post, columnWidth, height);
                                     break;
                                 case 1:
-                                    return option1(post, columnWidth);
+                                    return option1(post, columnWidth, height);
                                     break;
                                 case 2:
-                                    return option2(post, columnWidth, attributes.height);
+                                    return option2(post, columnWidth, height);
                                     break;
                                 default:
-                                    return option0(post, columnWidth);
+                                    return option0(post, columnWidth, height);
                                     break;
                             }
 
@@ -225,8 +241,15 @@ class SlothGeekPostEdit extends Component {
 export default withSelect( (select, props) => {
 
     const {post_per_page, category_selected} = props.attributes;
+    const { getEntityRecords } = select( 'core' );
+    const query = {
+        per_page: post_per_page,
+        categories: category_selected,
+        _embed: true,
+    };
 
     return {
-        posts: select('core').getEntityRecords('postType', 'post', {per_page: post_per_page, categories:category_selected, _embed: true})
+        posts: getEntityRecords('postType', 'post', query)
     };
+
 })(SlothGeekPostEdit);

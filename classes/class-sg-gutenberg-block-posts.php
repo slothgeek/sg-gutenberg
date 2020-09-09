@@ -21,6 +21,7 @@ class Class_SG_Gutenberg_Block_Posts
         $height = isset($attributes['height']) ? $attributes['height'] : 200;
         $type = isset($attributes['type']) ? $attributes['type'] : 1;
         $buttonText = isset($attributes['action_post']) ? $attributes['action_post'] : '';
+        $filter_color = isset($attributes['filter']) ? $attributes['filter'] : 'transparent';
 
 
         $recent_posts = wp_get_recent_posts(array(
@@ -50,7 +51,8 @@ class Class_SG_Gutenberg_Block_Posts
                 $buttonText,
                 $column_width,
                 $height,
-                $p['post_excerpt']
+                $p['post_excerpt'],
+                $filter_color
             );
         }
 
@@ -66,7 +68,7 @@ class Class_SG_Gutenberg_Block_Posts
 
     }
 
-    public function renderItem($type, $title, $permalink, $thumbnail, $actionText, $columnWidth, $height, $excerpt)
+    public function renderItem($type, $title, $permalink, $thumbnail, $actionText, $columnWidth, $height, $excerpt, $filter_color)
     {
         $output = '';
 
@@ -104,7 +106,8 @@ class Class_SG_Gutenberg_Block_Posts
                 $output = sprintf(
                     '
                 <li class="sg-item" style="width: %5$s">
-                    <div class="sg-item-content hoverable" style="background-image: url(%4$s)">
+                    <div class="sg-item-content hoverable" style="background-image: url(%4$s); height: %7$spx">
+                        <div class="sg-item-filter" style="background-color: %6$s"></div>
                         <div class="sg-item-title">
                             <h5>%3$s</h5>
                         </div>
@@ -118,7 +121,9 @@ class Class_SG_Gutenberg_Block_Posts
                     esc_url($permalink),//%2$s
                     esc_html($title),//%3$s
                     esc_html($thumbnail),//%4$s
-                    $columnWidth
+                    $columnWidth,//%5$s
+                    $filter_color,//%6$s
+                    $height,//%7$s
                 );
                 break;
 

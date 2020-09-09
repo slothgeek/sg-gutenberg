@@ -19,25 +19,29 @@ registerBlockType( 'sg/posts', {
             type: 'string',
             default: 1
         },
+        columns:{
+            type:"number",
+            default: 3
+        },
         post_per_page: {
-            "type": "string",
-            "default": 6
+            type: "number",
+            default: 6
         },
         height: {
-            "type": "string",
-            "default": 200
+            type: "number",
+            default: 200
         },
         category_selected: {
-            "type": "array",
-            "default": []
+            type: "array",
+            default: []
         },
         action_post:{
-            "type":"string",
-            "default":"Ver más..."
-        },
-        columns:{
             type:"string",
-            default: 3
+            default:"Ver más..."
+        },
+        filter:{
+            type:"string",
+            default:""
         }
     },
 

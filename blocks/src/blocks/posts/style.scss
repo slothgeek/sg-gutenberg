@@ -14,10 +14,18 @@
     min-height: 300px;
   }
 
+  .sg-item-filter{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
   .option1{
 
     li.sg-item {
-      height: 550px;
+      min-height: 100px;
     }
 
     .sg-item-content {

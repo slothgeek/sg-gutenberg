@@ -8,3 +8,4 @@ let MainColors = [
 ];
 
 export default MainColors;
+

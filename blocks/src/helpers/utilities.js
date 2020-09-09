@@ -20,3 +20,9 @@ export function sanitizeStyle({attributes, setAttributes}, element, value='') {
     }
 
 }
+
+export function getRGBAColor(color){
+
+    return `rgba(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b}, ${color.rgb.a})`;
+
+}
