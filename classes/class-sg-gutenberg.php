@@ -15,6 +15,7 @@ class Class_SG_Gutenberg
         add_filter('block_categories', array($this, 'sg_custom_gutenberg_categories'), 10, 2);
         add_action('enqueue_block_editor_assets', array($this, 'sg_gutenberg_components'));
         add_action('wp_enqueue_scripts', array($this, 'sg_gutenberg_styles'));
+        add_action('wp_enqueue_scripts', array($this, 'sg_gutenberg_scripts'));
         add_action('after_setup_theme', array($this, 'sg_setup_theme_supported_features' ));
         add_action('after_setup_theme', array($this, 'add_materialize_to_gutenberg'));
     }
@@ -52,6 +53,15 @@ class Class_SG_Gutenberg
                 array('jquery'), '5.12.0',
                 false);
         }
+    }
+
+    public function sg_gutenberg_scripts(){
+        wp_enqueue_script(
+            'sg-animation',
+            $this->plugin_url . 'assets/js/sg-gutenberg.js', array('TweenMax', 'ScrollMagic', 'animation', 'gsap'),
+            '1.0',
+            true
+        );
     }
 
     public function sg_gutenberg_styles()
