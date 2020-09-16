@@ -3,7 +3,7 @@
  * Plugin Name: SG Gutenberg
  * Plugin URI: https://www.slothgeek.com/plugins
  * Description: 'Slooowww'
- * Version: 1.0
+ * Version: 1.1
  * Author: Jorge Castrillo
  * Author URI: https://www.slothgeek.com
  */

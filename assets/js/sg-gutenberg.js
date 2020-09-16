@@ -1,48 +1,87 @@
 (function($) {
 
-    var controller = new ScrollMagic.Controller();
+    gsap.registerPlugin(ScrollTrigger);
 
-    var blockCount = 0;
+    var animations = [
+        { id: 'fade-in-left', object: { opacity: 0, x: -200 } },
+        { id: 'fade-in-right', object: { opacity: 0, x: 200 } },
+        { id: 'fade-in-bottom', object: { opacity: 0, y: 200 } },
+        { id: 'fade-in-top', object: { opacity: 0, y: -200 } },
+    ]
 
-    $('.animate').addClass( (index) => {
-        blockCount++;
-        return `a-${index}`;
+    var staggers = [
+        { id: 'stagger-fade-in-left', object: { opacity: 0, x: 200 } },
+        { id: 'stagger-fade-in-right', object: { opacity: 0, x: -200 } },
+        { id: 'stagger-fade-in-bottom', object: { opacity: 0, y: 100 } },
+        { id: 'stagger-fade-in-top', object: { opacity: 0, y: -100 } },
+    ]
+
+    animations.forEach( animation => {
+
+        $(`.${animation.id}`).each(function(i) {
+
+            gsap.from(this, {
+                ...animation.object,
+                duration: getDuration( this ),
+                delay: getDelay( this ),
+                scrollTrigger: scrollTrigger(this),
+            });
+
+        });
+
     });
 
-    for(var index=0; index<blockCount; index++){
-        var target = `.animate.a-${index}`;
+    staggers.forEach( stagger => {
 
-        var thetween = tween('', target, 1.3);
-        new ScrollMagic.Scene({
-            triggerElement: target
-        })
-            .setTween(thetween)
-            .addTo(controller);
+        $(`.${stagger.id}`).each(function(i) {
 
-    }
+            gsap.from($(this).find('.sg-item'), {
+                ...stagger.object,
+                duration: getDuration( this ),
+                delay: getDelay( this ),
+                stagger: getStagger( this ),
+                scrollTrigger: scrollTrigger(this),
+            });
 
-    function tween(type, target, duration, delay = 0){
-        var tween = null;
-        switch (type) {
-            case 'scale':
-                tween = TweenMax.staggerFromTo(target, duration, {transform: "scale(0)"}, {transform: "scale(1)", ease: Back.easeOut}, parseFloat(delay));
-                break;
-            case 'fade-in-left':
-                tween = TweenMax.staggerFromTo(target, duration, {left: "-110%", opacity:0}, {left: 0, opacity:1, ease: Back.easeOut}, parseFloat(delay));
-                break;
-            case 'fade-in-right':
-                tween = TweenMax.staggerFromTo(target, duration, {right: "-110%"}, {right: 0, ease: Back.easeOut}, parseFloat(delay));
-                break;
-            default:
-                tween = TweenMax.staggerFromTo(target, duration, {opacity:0}, {opacity:1, ease: Back.easeOut}, parseFloat(delay));
-                break;
+        });
+
+    });
+
+    function scrollTrigger( trigger ){
+
+        var object = {
+            trigger: trigger,
+            toggleActions: "restart pause resume none",
         }
-
-        return tween;
+        return object;
     }
 
+    function getDuration( element ){
+        return getAnimationTimes(element, 'drt', 1)
+    }
 
+    function getStagger( element ){
+        return getAnimationTimes(element, 'stg', 0.5)
+    }
 
+    function getDelay( element ){
+        return getAnimationTimes(element, 'dly')
+    }
 
+    function getAnimationTimes( element, key, seconds=0 ){
+        var time = seconds;
+
+        $(element).attr("class").split(/\s+/).forEach( c => {
+
+            if( c.indexOf(key) > -1){
+                var array_c = c.split('-');
+                time = array_c.length > 2 ? parseFloat(`${array_c[1]}.${array_c[2]}`) : parseInt(array_c[1])
+            }
+
+        })
+
+        return time;
+
+    }
 
 })( jQuery );

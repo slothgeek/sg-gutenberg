@@ -15,7 +15,8 @@ class Class_SG_Gutenberg
         add_filter('block_categories', array($this, 'sg_custom_gutenberg_categories'), 10, 2);
         add_action('enqueue_block_editor_assets', array($this, 'sg_gutenberg_components'));
         add_action('wp_enqueue_scripts', array($this, 'sg_gutenberg_styles'));
-        add_action('wp_enqueue_scripts', array($this, 'sg_gutenberg_scripts'));
+        add_action('wp_enqueue_scripts', array($this, 'sg_gutenberg_scripts'), 10);
+        add_action('wp_enqueue_scripts', array($this, 'sg_gutenberg_libs'));
         add_action('after_setup_theme', array($this, 'sg_setup_theme_supported_features' ));
         add_action('after_setup_theme', array($this, 'add_materialize_to_gutenberg'));
     }
@@ -58,10 +59,19 @@ class Class_SG_Gutenberg
     public function sg_gutenberg_scripts(){
         wp_enqueue_script(
             'sg-animation',
-            $this->plugin_url . 'assets/js/sg-gutenberg.js', array('TweenMax', 'ScrollMagic', 'animation', 'gsap'),
+            $this->plugin_url . 'assets/js/sg-gutenberg.js', array('jquery', 'gsap', 'ScrollTrigger'),
             '1.0',
             true
         );
+    }
+
+    public function sg_gutenberg_libs(){
+
+        if(!class_exists('Class_SG')){
+
+            wp_enqueue_script('gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js', array('jquery'), '3.2.4', false);
+        }
+
     }
 
     public function sg_gutenberg_styles()
