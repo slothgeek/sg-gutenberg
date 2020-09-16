@@ -51,7 +51,10 @@
 
         var object = {
             trigger: trigger,
+            start:"top 80%",
+            end:"bottom 20%",
             toggleActions: "restart pause resume none",
+
         }
         return object;
     }
