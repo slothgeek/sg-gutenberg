@@ -18,5 +18,6 @@ import './blocks/gallery/gallery';
 import './blocks/hotgraphic/block';
 import './blocks/posts/posts';
 import './blocks/ganimation/block';
+import './blocks/pricingtable/block';
 
 

@@ -1,5 +1,10 @@
 .wp-block-sg-ganimation{
 
+   > img{
+    width: 100%;
+  }
+
+
   &.sg-items{
     position: relative;
     max-width: 550px;

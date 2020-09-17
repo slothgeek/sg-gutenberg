@@ -1,6 +1,6 @@
 /*
  Hoja de estilos para controles de diseño CSS
-
+ 0. Unset Materialize css
  1. Dimension control
  2. Background image
  3. Range control
@@ -8,11 +8,24 @@
  5. Inner Blocks
  6. Buttons
  7. Panel
+
  */
 
 /*
- 1. Dimension control
+ 0.
  */
+.components-checkbox-control__input-container{
+
+}
+.editor-styles-wrapper [type="checkbox"]:not(:checked), .editor-styles-wrapper [type="checkbox"]:checked{
+  position: relative !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+    /*
+     1. Dimension control
+     */
 
 .dimension-control{
   .padding{

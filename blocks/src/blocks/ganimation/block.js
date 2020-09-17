@@ -17,8 +17,12 @@ registerBlockType( 'sg/ganimation', {
         items: {
             default:[]
         },
-        height:{
-            default:"600px"
+        graphic:{
+            type: 'object',
+            default: {
+                url:'',
+                alt:''
+            }
         },
         maxWidth:{
             default:"550px"

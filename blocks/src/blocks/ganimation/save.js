@@ -9,7 +9,8 @@ export default class SlothGeekGallerySave extends Component {
         const {attributes} = this.props;
 
         return (
-            <div id={attributes.id} className="wp-block-sg-ganimation sg-items" style={{height: attributes.height, maxWidth: attributes.maxWidth}}>
+            <div id={attributes.id} className="wp-block-sg-ganimation sg-items" style={{maxWidth: attributes.maxWidth}}>
+                <img src={attributes.graphic.url} alt={attributes.graphic.alt}/>
                 {
                     attributes.items.map((item,index) => {
 

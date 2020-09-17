@@ -81,6 +81,15 @@ const icons = [
     {prefix: 'fas', name: 'fa-server'},
     {prefix: 'fas', name: 'fa-database'},
     {prefix: 'fas', name: 'fa-info'},
+    {prefix: 'fas', name: 'fa-check'},
+    {prefix: 'fas', name: 'fa-check-square'},
+    {prefix: 'fas', name: 'fa-check'},
+    {prefix: 'fas', name: 'fa-walking'},
+    {prefix: 'fas', name: 'fa-runing'},
+    {prefix: 'fas', name: 'fa-male'},
+    {prefix: 'fas', name: 'fa-building'},
+    {prefix: 'fas', name: 'fa-city'},
+    {prefix: 'fas', name: 'fa-home'},
 
 ]
 
