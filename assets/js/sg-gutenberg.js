@@ -3,17 +3,17 @@
     gsap.registerPlugin(ScrollTrigger);
 
     var animations = [
-        { id: 'fade-in-left', object: { opacity: 0, x: -200 } },
-        { id: 'fade-in-right', object: { opacity: 0, x: 200 } },
-        { id: 'fade-in-bottom', object: { opacity: 0, y: 200 } },
-        { id: 'fade-in-top', object: { opacity: 0, y: -200 } },
+        { id: 'fade-in-left', from: { opacity: 0, x: -200 } },
+        { id: 'fade-in-right', from: { opacity: 0, x: 200 } },
+        { id: 'fade-in-bottom', from: { opacity: 0, y: 200 } },
+        { id: 'fade-in-top', from: { opacity: 0, y: -200 } },
     ]
 
     var staggers = [
-        { id: 'stagger-fade-in-left', object: { opacity: 0, x: 200 } },
-        { id: 'stagger-fade-in-right', object: { opacity: 0, x: -200 } },
-        { id: 'stagger-fade-in-bottom', object: { opacity: 0, y: 100 } },
-        { id: 'stagger-fade-in-top', object: { opacity: 0, y: -100 } },
+        { id: 'stagger-fade-in-left', from: { opacity: 0, x: 200 } },
+        { id: 'stagger-fade-in-right', from: { opacity: 0, x: -200 } },
+        { id: 'stagger-fade-in-bottom', from: { opacity: 0, y: 100 } },
+        { id: 'stagger-fade-in-top', from: { opacity: 0, y: -100 } },
     ]
 
     animations.forEach( animation => {
@@ -21,7 +21,7 @@
         $(`.${animation.id}`).each(function(i) {
 
             gsap.from(this, {
-                ...animation.object,
+                ...animation.from,
                 duration: getDuration( this ),
                 delay: getDelay( this ),
                 scrollTrigger: scrollTrigger(this),
@@ -36,7 +36,7 @@
         $(`.${stagger.id}`).each(function(i) {
 
             gsap.from($(this).find('.sg-item'), {
-                ...stagger.object,
+                ...stagger.from,
                 duration: getDuration( this ),
                 delay: getDelay( this ),
                 stagger: getStagger( this ),
@@ -52,10 +52,9 @@
         var object = {
             trigger: trigger,
             start:"top 80%",
-            end:"bottom 20%",
-            toggleActions: "restart pause resume none",
-
+            toggleActions: "restart pause none reverse",
         }
+
         return object;
     }
 
