@@ -1,6 +1,6 @@
 const { Component } = wp.element;
 
-export default class SlothGeekGallerySave extends Component {
+export default class Save extends Component {
     constructor() {
         super( ...arguments );
     }

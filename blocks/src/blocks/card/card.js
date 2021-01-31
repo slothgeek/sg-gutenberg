@@ -221,6 +221,7 @@ registerBlockType('sg/card', {
                             options={ [
                                 { value: 'basic', label: 'Basic Card' },
                                 { value: 'image', label: 'Image Card' },
+                                { value: 'overlay', label: 'Overlay Card' },
                             ] }
                         />
                         <CheckboxControl
@@ -327,7 +328,6 @@ registerBlockType('sg/card', {
                         />
                         {renderFloatings()}
                     </div>
-
                 </div>
             )
 
@@ -361,7 +361,6 @@ registerBlockType('sg/card', {
                     return ([
                         cardImage,
                         cardContent
-
                     ])
                 }
             }
@@ -384,6 +383,45 @@ registerBlockType('sg/card', {
             )
         }
 
+        const getOverlayCard = () => {
+            return(
+                <div className="card">
+                    <div className="card-content">
+                        <Title
+                            className="card-title"
+                            type="span"
+                            onChange={value => setAttributes({ title: value })}
+                            value={ attributes.title.val }
+                            style={ attributes.title.style }
+                            placeholder="Agrega un título"
+                        />
+                    </div>
+                    <div className="card-image waves-effect waves-block waves-light">
+                        <div className="card-image">
+                            <GraphicPicker
+                                onChange={ media => setAttributes( { image: media } ) }
+                                url={attributes.image.url}
+                                alt={attributes.image.alt}
+                            />
+                        </div>
+                    </div>
+                    <div className="center-align">
+                        <span className="card-title activator">Abrir overlay</span>
+                    </div>
+                    <div className="card-reveal overlay-content">
+                        <span className="card-title activator" style={ attributes.title.style }>{ attributes.title.val }</span>
+                        <Paragraph
+                            type="p"
+                            onChange={value => setAttributes({ paragraph: value })}
+                            value={ attributes.paragraph.val }
+                            style={ attributes.paragraph.style }
+                            placeholder="Agrega aquí el cuerpo de la tarjeta"
+                        />
+                    </div>
+                </div>
+            )
+        }
+
         const getCard = () => {
 
             switch (attributes.type){
@@ -393,6 +431,9 @@ registerBlockType('sg/card', {
                 case 'image':
                     return getImageCard();
                     break
+                case 'overlay':
+                    return getOverlayCard();
+                    break;
                 default:
                     break;
             }
@@ -517,6 +558,39 @@ registerBlockType('sg/card', {
             )
         }
 
+        const getOverlayCard = () => {
+            return(
+                <div className="card">
+                    <div className="card-content">
+                        <RichText.Content
+                            tagName='span'
+                            className='card-title activator'
+                            value={ attributes.title.val }
+                            style={attributes.title.style}
+                        />
+                    </div>
+                    <div className="card-image waves-effect waves-block waves-light">
+                        <div className="card-image">
+                            <img className="activator" src={attributes.image.url} alt={attributes.image.alt}/>
+                        </div>
+                    </div>
+                    <div className="card-reveal overlay-content">
+                        <RichText.Content
+                            tagName='span'
+                            className='card-title activator'
+                            value={ attributes.title.val }
+                            style={attributes.title.style}
+                        />
+                        <div style={attributes.paragraph.style}>
+                            <RichText.Content
+                                value={ attributes.paragraph.val }
+                            />
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+
         const getCard = () => {
 
             switch (attributes.type){
@@ -526,6 +600,9 @@ registerBlockType('sg/card', {
                 case 'image':
                     return getImageCard();
                     break
+                case 'overlay':
+                    return getOverlayCard();
+                    break;
                 default:
                     break;
             }

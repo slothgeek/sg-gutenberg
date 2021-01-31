@@ -10,31 +10,46 @@ export default class RowSave extends Component {
     render(){
         const {className, attributes} = this.props;
 
+        const classes = className != undefined ? className : '';
+
         const renderContainer = () => {
             return attributes.hasContainer ?
                 (
-                    <div className="container">
-                        {renderRow()}
+                    <div id={ attributes.id } className="container" >
+                        {
+                            attributes.itsSection ?
+                                (
+                                    <section className="row" style={ attributes.style}>
+                                        <InnerBlocks.Content />
+                                    </section>
+                                ) :
+
+                                (
+                                    <div className="row" style={ attributes.style}>
+                                        <InnerBlocks.Content />
+                                    </div>
+                                )
+                        }
                     </div>
                 ) :
                 (
-                    renderRow()
+                    attributes.itsSection ?
+                        (
+                            <section id={ attributes.id }  className={`row ${ classes }`} style={ attributes.style}>
+                                <InnerBlocks.Content />
+                            </section>
+                        ) :
+
+                        (
+                            <div id={ attributes.id }  className={`row ${ classes }`} style={ attributes.style}>
+                                <InnerBlocks.Content />
+                            </div>
+                        )
                 )
         }
 
         const renderRow = () => {
-            return attributes.itsSection ?
-                (
-                    <section className={`row ${className}`} style={ attributes.style}>
-                        <InnerBlocks.Content />
-                    </section>
-                ) :
-
-                (
-                    <div className={`row ${className}`} style={ attributes.style}>
-                        <InnerBlocks.Content />
-                    </div>
-                )
+            return
         }
 
         return ( renderContainer() );

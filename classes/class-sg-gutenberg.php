@@ -48,18 +48,41 @@ class Class_SG_Gutenberg
                 $this->plugin_url . 'blocks/dist/blocks.editor.build.css',
                 array('wp-edit-blocks')
             );
+
             wp_enqueue_script(
                 'fontawesome',
                 'https://kit.fontawesome.com/726fdc7259.js',
                 array('jquery'), '5.12.0',
-                false);
+                false
+            );
+
+            wp_enqueue_script(
+                'materialize',
+                get_template_directory_uri() . '/assets/js/lib/materialize.min.js',
+                array('jquery'), '1.0',
+                false
+            );
+
+            wp_enqueue_script(
+                'sg-gutenberg',
+                $this->plugin_url . 'assets/js/sg-gutenberg.js', array('jquery', 'materialize'),
+                '1.0',
+                true
+            );
         }
     }
 
     public function sg_gutenberg_scripts(){
         wp_enqueue_script(
-            'sg-animation',
-            $this->plugin_url . 'assets/js/sg-gutenberg.js', array('jquery', 'gsap', 'ScrollTrigger'),
+            'sg-gutenberg',
+            $this->plugin_url . 'assets/js/sg-gutenberg.js', array('jquery', 'materialize'),
+            '1.0',
+            true
+        );
+
+        wp_enqueue_script(
+            'sg-gsap',
+            $this->plugin_url . 'assets/js/sg-gsap.js', array('jquery', 'gsap', 'ScrollTrigger'),
             '1.0',
             true
         );

@@ -15,6 +15,9 @@ registerBlockType( 'sg/row', {
             type:'boolean',
             default:false
         },
+        id:{
+            type:'string',
+        },
         hasContainer:{
             type:'boolean',
             default:false

@@ -1,5 +1,5 @@
 const { InnerBlocks, InspectorControls } = wp.blockEditor;
-const { PanelBody, PanelRow, ToggleControl, TabPanel } = wp.components;
+const { PanelBody, PanelRow, ToggleControl, TabPanel, TextControl } = wp.components;
 const { Component } = wp.element;
 const { createHigherOrderComponent } = wp.compose;
 
@@ -67,6 +67,11 @@ export default class RowEdit extends Component {
                     help={ attributes.hasContainer ? 'Contenedor.' : 'Solo fila.' }
                     checked={ attributes.hasContainer }
                     onChange={ (value) => setAttributes( { hasContainer: value } ) }
+                />
+                <TextControl
+                    label="Anclaje HTML"
+                    onChange={ (value) => setAttributes( { id: value } ) }
+                    value={ attributes.id }
                 />
             </div>
 
