@@ -9,13 +9,24 @@
         { id: 'fade-in-bottom', from: { opacity: 0, y: 200 } },
         { id: 'fade-in-top', from: { opacity: 0, y: -200 } },
 
+        { id: 'fade-in-scale',          from: { opacity: 0, scale:0,  } },
+        { id: 'fade-in-scale-left',     from: { opacity: 0, scale:0, x: -200 } },
+        { id: 'fade-in-scale-right',    from: { opacity: 0, scale:0, x: 200 } },
+        { id: 'fade-in-scale-bottom',   from: { opacity: 0, scale:0, y: 200 } },
+        { id: 'fade-in-scale-top',      from: { opacity: 0, scale:0, y: -200 } },
+
     ]
 
     var staggers = [
-        { id: 'stagger-fade-in-left', from: { opacity: 0, x: 200 } },
-        { id: 'stagger-fade-in-right', from: { opacity: 0, x: -200 } },
+        { id: 'stagger-fade-in-left',   from: { opacity: 0, x: 200 } },
+        { id: 'stagger-fade-in-right',  from: { opacity: 0, x: -200 } },
         { id: 'stagger-fade-in-bottom', from: { opacity: 0, y: 100 } },
-        { id: 'stagger-fade-in-top', from: { opacity: 0, y: -100 } },
+        { id: 'stagger-fade-in-top',    from: { opacity: 0, y: -100 } },
+
+        { id: 'stagger-fade-in-scale-left',   from: { opacity: 0, scale:0, x: 200 } },
+        { id: 'stagger-fade-in-scale-right',  from: { opacity: 0, scale:0, x: -200 } },
+        { id: 'stagger-fade-in-scale-bottom', from: { opacity: 0, scale:0, y: 100 } },
+        { id: 'stagger-fade-in-scale-top',    from: { opacity: 0, scale:0, y: -100 } },
     ]
 
     animations.forEach( animation => {
